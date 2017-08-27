@@ -17,6 +17,17 @@ io.on('connection', function(socket) {
     console.log("Disconnect")
   });
 
+  socket.on('cpuUsage', function(i) {
+    si.currentLoad(function(value) {
+      var response = {
+        i: i,
+        cpu: [value.currentload]
+      }
+      console.log(response)
+      socket.emit('cpuUsage', response);
+    })
+  })
+
   socket.on('diskSpace', function(i) {
     si.fsSize(function(value) {
       var response = {

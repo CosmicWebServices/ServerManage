@@ -1,9 +1,23 @@
 /*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
 
-html {
+html, body {
+    height: 100%;
+}
+
+body {
     color: #222;
     font-size: 1em;
     line-height: 1.4;
+}
+
+.container-fluid {
+    
+    overflow-y: hidden; /* don't show content that exceeds my height */
+}
+
+.body-film {
+    min-height: 100%;
+    overflow-y: scroll;
 }
 
 ::-moz-selection {
@@ -51,29 +65,6 @@ textarea {
     padding: 0.2em 0;
 }
 
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ==========================================================================
-   Media Queries
-   ========================================================================== */
-
 @media only screen and (min-width: 35em) {
 
 }
@@ -84,10 +75,6 @@ textarea {
        (min-resolution: 120dpi) {
 
 }
-
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
 
 .hidden {
     display: none !important;
@@ -132,10 +119,6 @@ textarea {
 .clearfix {
     *zoom: 1;
 }
-
-/* ==========================================================================
-   Print styles
-   ========================================================================== */
 
 @media print {
     *,
