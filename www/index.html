@@ -77,7 +77,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            
+
           </ul>
         </li>
     </section>
@@ -108,7 +108,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">CPU</span>
-              <span class="info-box-number">90<small>%</small> <br></span>
+              <span class="info-box-number"><span id="CPUPerc"></span><small>%</small></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -117,11 +117,11 @@
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-hdd-o"></i></span>
+            <span class="info-box-icon bg-green" id="DiskUsageIcon"><i class="fa fa-hdd-o"></i></span>
 
             <div class="info-box-content">
               <span class="info-box-text">Disk Usage</span>
-              <span class="info-box-number">79.6%<br>369GB/464GB</span>
+              <span class="info-box-number"><span id="DiskPerc"></span>%<br><span id="DiskUsed"></span>/<span id="DiskMax"></span></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -138,7 +138,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Uptime</span>
-              <span class="info-box-number">760 hours</span>
+              <span class="info-box-number" id="uptimecounter"></span>
             </div>
             <!-- /.info-box-content -->
           </div>

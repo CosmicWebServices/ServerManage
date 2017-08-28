@@ -17,6 +17,15 @@ io.on('connection', function(socket) {
     console.log("Disconnect")
   });
 
+  socket.on('uptime', function(i) {
+      var response = {
+        i: i,
+        uptime: [si.time().uptime]
+      }
+      console.log(response)
+      socket.emit('uptime', response);
+  })
+
   socket.on('cpuUsage', function(i) {
     si.currentLoad(function(value) {
       var response = {
@@ -51,5 +60,5 @@ function formatBytes(a, b) {
     d = b || 2,
     e = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"],
     f = Math.floor(Math.log(a) / Math.log(c));
-  return parseFloat((a / Math.pow(c, f)).toFixed(d)) + " " + e[f]
+  return parseInt((a / Math.pow(c, f)).toFixed(d)) + " " + e[f]
 }
