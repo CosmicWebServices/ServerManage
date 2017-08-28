@@ -7,6 +7,22 @@ for (i in config.servers) {
     query: 'password=' + localStorage.getItem("password")
   });
   specs[i] = {};
+  
+  sockets[i].on('reconnecting', function reconnectCallback(tries) {
+    if (tries === 3) { // Maybe more or less tries... this can change
+      if (Notification.permission !== "granted") {
+        Notification.requestPermission();
+      } else {
+        var notification = new Notification('Server is down!', {
+          body: "One of your servers just went down.",
+        });
+        
+        notification.onclick = function () {
+          window.open(window.location.href);      
+        };
+      }
+    }
+  });
 
   sockets[i].on('diskSpace', function(info) {
     specs[info.i].disk = info.space;
