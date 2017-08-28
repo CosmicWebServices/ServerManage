@@ -4,27 +4,37 @@ const cmd = require('node-cmd');
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-const port = process.env.port || 3000;
-const origins = process.env.domains || "*:*";
+const config = require('./config.json')
+const port = config.port || 3000;
+const origins = config.domains || "*:*";
 io.origins(origins)
+
 
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
 io.on('connection', function(socket) {
+
+  var handshakeData = socket.request;
+
+  if (handshakeData._query['password'] != config.password){
+    socket.disconnect();
+    console.log("Disconnect: Wrong Password")
+  }
+
   console.log("Connected")
   socket.on('disconnect', function() {
     console.log("Disconnect")
   });
 
   socket.on('uptime', function(i) {
-      var response = {
-        i: i,
-        uptime: [si.time().uptime]
-      }
-      console.log(response)
-      socket.emit('uptime', response);
+    var response = {
+      i: i,
+      uptime: [si.time().uptime]
+    }
+    console.log(response)
+    socket.emit('uptime', response);
   })
 
   socket.on('cpuUsage', function(i) {
@@ -50,12 +60,12 @@ io.on('connection', function(socket) {
   })
 
 
-  socket.on('shell', function(msg){
+  socket.on('shell', function(msg) {
     cmd.get(
-        msg,
-        function(err, data, stderr){
-            socket.emit('shell', [err, data, stderr])
-        }
+      msg,
+      function(err, data, stderr) {
+        socket.emit('shell', [err, data, stderr])
+      }
     );
   });
 });

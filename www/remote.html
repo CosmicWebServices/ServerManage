@@ -21,7 +21,9 @@
       return param
     }
 
-    var socket = io.connect(config.servers[getQueryParam("server")][1]);
+    var socket = io.connect(config.servers[getQueryParam("server")][1], {
+      query: 'password=' + localStorage.getItem("password")
+    });
 
     jQuery(function($, undefined) {
       $('body').terminal(function(command) {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,6 +20,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,175 +30,194 @@
   <![endif]-->
 
   <!-- Google Font -->
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+  <div class="wrapper">
 
-  <header class="main-header">
+    <header class="main-header">
 
-    <!-- Logo -->
-    <a href="index2.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>Se</b>M</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Server</b>Manage</span>
-    </a>
+      <!-- Logo -->
+      <a href="index2.html" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>Se</b>M</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Server</b>Manage</span>
+      </a>
 
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
-      <!-- Navbar Right Menu -->
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
-        </ul>
-      </div>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- Control Sidebar Toggle Button -->
+            <li>
+              <a href="#" onclick="login()"><i class="fa fa-sign-in"></i></a>
+            </li>
+          </ul>
+        </div>
 
-    </nav>
-  </header>
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview menu-open">
-          <a href="#">
+      </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+          <li class="header">MAIN NAVIGATION</li>
+          <li class="active treeview menu-open">
+            <a href="#">
             <i class="fa fa-dashboard"></i> <span>Servers</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
+            <ul class="treeview-menu">
 
-          </ul>
-        </li>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
+            </ul>
+          </li>
+      </section>
+      <!-- /.sidebar -->
+    </aside>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
         Dashboard
         <small>Version 2.0</small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
-    </section>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li class="active">Dashboard</li>
+        </ol>
+      </section>
 
-    <!-- Main content -->
-    <section class="content">
-      <!-- Info boxes -->
-      <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+      <!-- Main content -->
+      <section class="content">
+        <!-- Info boxes -->
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">CPU</span>
-              <span class="info-box-number"><span id="CPUPerc"></span><small>%</small></span>
+              <div class="info-box-content">
+                <span class="info-box-text">CPU</span>
+                <span class="info-box-number"><span id="CPUPerc"></span><small>%</small></span>
+              </div>
+              <!-- /.info-box-content -->
             </div>
-            <!-- /.info-box-content -->
+            <!-- /.info-box -->
           </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-green" id="DiskUsageIcon"><i class="fa fa-hdd-o"></i></span>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-green" id="DiskUsageIcon"><i class="fa fa-hdd-o"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Disk Usage</span>
-              <span class="info-box-number"><span id="DiskPerc"></span>%<br><span id="DiskUsed"></span>/<span id="DiskMax"></span></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Disk Usage</span>
+                <span class="info-box-number"><span id="DiskPerc"></span>%<br><span id="DiskUsed"></span>/<span id="DiskMax"></span></span>
+              </div>
+              <!-- /.info-box-content -->
             </div>
-            <!-- /.info-box-content -->
+            <!-- /.info-box -->
           </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
+          <!-- /.col -->
 
-        <!-- fix for small devices only -->
-        <div class="clearfix visible-sm-block"></div>
+          <!-- fix for small devices only -->
+          <div class="clearfix visible-sm-block"></div>
 
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="fa fa-clock-o"></i></span>
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-green"><i class="fa fa-clock-o"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Uptime</span>
-              <span class="info-box-number" id="uptimecounter"></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Uptime</span>
+                <span class="info-box-number" id="uptimecounter"></span>
+              </div>
+              <!-- /.info-box-content -->
             </div>
-            <!-- /.info-box-content -->
+            <!-- /.info-box -->
           </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="fa fa-ticket"></i></span>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-yellow"><i class="fa fa-ticket"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Ram Usage</span>
-              <span class="info-box-number">57% <br> 4.7GB/8GB</span>
+              <div class="info-box-content">
+                <span class="info-box-text">Ram Usage</span>
+                <span class="info-box-number">57% <br> 4.7GB/8GB</span>
+              </div>
+              <!-- /.info-box-content -->
             </div>
-            <!-- /.info-box-content -->
+            <!-- /.info-box -->
           </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+          <!-- /.col -->
+          <a href="./remote.html?server=0" target="_blank" id="remoteConnect">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-desktop"></i></span>
 
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+                <div class="info-box-content">
+                  <span class="info-box-text">Remote Connect</span>
+                  <span class="info-box-number">Click To Connect</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+          </a>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </section>
+      <!-- /.content -->
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer>
+    <!-- /.content-wrapper -->
 
-</div>
-<!-- ./wrapper -->
+    <footer class="main-footer">
+      <div class="pull-right hidden-xs">
+        <b>Version</b> 2.4.0
+      </div>
+      <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights reserved.
+    </footer>
 
-<!-- jQuery 3 -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- FastClick -->
-<script src="bower_components/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
-<!-- Sparkline -->
-<script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+  </div>
+  <!-- ./wrapper -->
 
-<!-- SlimScroll -->
-<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- ChartJS -->
-<script src="bower_components/Chart.js/Chart.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard2.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<script src="dist/js/socket.io.js"></script>
-<script src="config.js"></script>
-<script src="dist/js/main.js"></script>
+  <!-- jQuery 3 -->
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- SWAL -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- FastClick -->
+  <script src="bower_components/fastclick/lib/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="dist/js/adminlte.min.js"></script>
+  <!-- Sparkline -->
+  <script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+
+  <!-- SlimScroll -->
+  <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+  <!-- ChartJS -->
+  <script src="bower_components/Chart.js/Chart.js"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="dist/js/pages/dashboard2.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="dist/js/demo.js"></script>
+  <script src="dist/js/socket.io.js"></script>
+  <script src="config.js"></script>
+  <script src="dist/js/main.js"></script>
+
+
 </body>
+
 </html>

@@ -3,8 +3,11 @@ var specs = [];
 var currentServer = 0;
 
 for (i in config.servers) {
-  sockets[i] = io.connect(config.servers[i][1]);
+  sockets[i] = io.connect(config.servers[i][1], {
+    query: 'password=' + localStorage.getItem("password")
+  });
   specs[i] = {};
+
   sockets[i].on('diskSpace', function(info) {
     specs[info.i].disk = info.space;
     $("#DiskPerc").html(info.space[2]);
@@ -108,3 +111,21 @@ tick15s();
 setInterval(tick15s, 15000)
 tick5s();
 setInterval(tick5s, 5000)
+
+function login() {
+  swal({
+    title: 'Enter your password',
+    input: 'password',
+    inputAttributes: {
+      'autocapitalize': 'off',
+      'autocorrect': 'off'
+    }
+  }).then(function(password) {
+    if (password) {
+      localStorage.setItem("password", password);
+      location.reload();
+    }
+  })
+
+
+}
