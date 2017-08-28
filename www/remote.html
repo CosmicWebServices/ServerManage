@@ -1,0 +1,52 @@
+<html>
+
+<head>
+  <title>Remote</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/1.6.2/css/jquery.terminal.min.css" />
+</head>
+
+<body>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="config.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/1.6.2/js/jquery.terminal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js" integrity="sha256-sdmLD9jD1PIzq3KOQPNSGZYxjv76rds79Mnyk5JNp1M=" crossorigin="anonymous"></script>
+  <script>
+    function getQueryParam(param) {
+      location.search.substr(1)
+        .split("&")
+        .some(function(item) { // returns first occurence and stops
+          return item.split("=")[0] == param && (param = item.split("=")[1])
+        })
+      return param
+    }
+
+    var socket = io.connect(config.servers[getQueryParam("server")][1]);
+
+    jQuery(function($, undefined) {
+      $('body').terminal(function(command) {
+        socket.emit("shell", command)
+      }, {
+        greetings: config.servers[getQueryParam("server")][0] + ' Shell',
+        name: 'js_demo',
+        height: 200,
+        prompt: config.servers[getQueryParam("server")][0] + '> '
+      });
+    });
+
+    socket.on('shell', function(i) {
+      if (!i[0]) {
+        $("body").terminal().echo(i[1])
+      } else {
+        $("body").terminal().echo(i[2], {
+          finalize: function(div) {
+            div.css("color", "red");
+          }
+        })
+        console.log(i)
+      }
+    });
+  </script>
+</body>
+
+</html>
