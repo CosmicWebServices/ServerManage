@@ -1,5 +1,6 @@
 const si = require('systeminformation');
 const os = require('os');
+const cmd = require('node-cmd');
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
@@ -48,6 +49,15 @@ io.on('connection', function(socket) {
     })
   })
 
+
+  socket.on('shell', function(msg){
+    cmd.get(
+        msg,
+        function(err, data, stderr){
+            socket.emit('shell', [err, data, stderr])
+        }
+    );
+  });
 });
 
 http.listen(port, function() {
